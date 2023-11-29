@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ website_title }}</title>
+    <link rel="icon" href="{{ resource_url }}img/logo-unsrat.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ resource_url }}adminlte3/plugins/fontawesome-free/css/all.min.css">
+    {# <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> #}
+    <link rel="stylesheet" href="{{ resource_url }}adminlte3/dist/css/adminlte.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+	<link rel="stylesheet" href="{{ resource_url}}css/tik_unsrat.css"/>
+
+	<script src="{{ resource_url }}adminlte3/plugins/jquery/jquery.min.js"></script>
+	<script src="{{ resource_url }}js/tik_functions.js"></script>
+	<script src="{{ resource_url }}adminlte3/plugins/popper/popper.min.js"></script>
+	<script src="{{ resource_url }}adminlte3/plugins/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+	<div id="loading-container">
+		<div id="loading">
+			<img alt="unsrat" id="loading-logo" src="{{ resource_url }}img/unsrat_mosaic.png"/>
+			memuat ..
+		</div>
+	</div>
+
+  	<div id="alert_js"></div>
+
+	<div class="wrapper">
+		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+				</li>
+			</ul>
+
+			<!-- Right navbar links -->
+			<ul class="navbar-nav ml-auto">		
+				<li class="nav-item dropdown">
+					<a class="nav-link" data-toggle="dropdown" href="#">
+						<i class="far fa-bell"></i>
+						<span class="badge badge-danger navbar-badge"><b>15</b></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+						<span class="dropdown-item dropdown-header">15 Notifications</span>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item">
+							<i class="fas fa-envelope mr-2"></i> 4 new messages
+							<span class="float-right text-muted text-sm">3 mins</span>
+						</a>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item">
+							<i class="fas fa-users mr-2"></i> 8 friend requests
+							<span class="float-right text-muted text-sm">12 hours</span>
+						</a>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item">
+							<i class="fas fa-file mr-2"></i> 3 new reports
+							<span class="float-right text-muted text-sm">2 days</span>
+						</a>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link pr-0" data-toggle="dropdown" href="#profile_dropdown">
+						<div class="image">
+							<object data="{{ foto_profil_default }}" type="image/jpg" width="32em">
+								<img src="{{ foto_profil_default }}" class="img-circle" alt="User Image" width="32em">
+							</object>
+						</div>
+					</a>
+				</li>	
+				<li class="nav-item dropdown">
+					<a class="nav-link pl-2 pr-3" data-toggle="dropdown" href="#" style="line-height: 1em;">
+						<span class="text-uppercase">(nama pengguna)</span><br/>
+						<small>(nip/nim/lainnya)</small>
+					</a>
+					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" id="profile_dropdown">
+						<span class="dropdown-item dropdown-header">
+							<object data="{{ pas_foto_default }}" type="image/jpg" style="width: 4cm; height: auto;">
+								<img alt="foto profil" src="{{ resource_url }}img/logo-unsrat.png"/>
+							</object>
+						</span>
+						<a href="#" data-toggle="modal" data-target="#mdl-logout" class="dropdown-item dropdown-footer text-bold text-uppercase">
+							KELUAR<i class="nav-icon fas fa-sign-out-alt ml-2"></i>
+						</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link pl-0 pr-0" data-toggle="dropdown" href="#profile_dropdown">
+						<span class="fas fa-sign-out-alt"></span>
+					</a>
+				</li>	
+			</ul>
+		</nav>
+
+		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+			<a href="" class="brand-link">
+			<img src="{{ logo_unsrat }}"
+				alt="AdminLTE Logo"
+				class="brand-image img-circle elevation-1"
+				style="opacity: .8">
+			<span class="brand-text font-weight-light">{{ app_name }}</span>
+			</a>
+
+			{{ include(sidebar) }}
+		</aside>
+
+		<!-- MAIN CONTENT -->
+		{% block content %}{% endblock %}
+
+
+		<footer class="main-footer text-sm">
+			{{ website_footer|raw }}
+			<div class="float-right d-none d-sm-inline-block">
+				<b>Version</b> {{ version_number }}
+			</div>
+		</footer>
+	</div>
+
+	<!-- button scroll to top -->
+	<a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button">
+		<i class="fas fa-chevron-up"></i>
+	</a>
+
+	<!-- modal logout -->
+	<div class="modal fade" id="mdl-logout">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h5>Yakin untuk keluar?</h5>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+					<a href="{{ base_url() }}beranda/logout">
+						<button type="button" class="btn bg-black"><i class="fas fa-sign-out-alt mr-2"></i>KELUAR</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+<script src="{{ resource_url }}adminlte3/dist/js/adminlte.min.js"></script>
+<script src="{{ resource_url }}adminlte3/dist/js/demo.js"></script>
+<script src="{{ resource_url }}js/usr_template.js"></script>
+<script src="{{ resource_url }}js/tik_class.js"></script>
+
+<script>
+	// button tooltip
+	$('[rel="tooltip"]').tooltip();	
+
+	$.ajaxSetup({
+        beforeSend: function() {
+            $('#loading-container').show();
+        },
+        complete: function() {
+            $('#loading-container').hide();
+        }
+    });
+</script>
+
+<!-- Page Specific JS File -->
+<script>
+    {% if js is not empty %}
+        {{ include(js) }}
+    {% endif %}
+</script>

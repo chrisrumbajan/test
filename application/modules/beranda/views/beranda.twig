@@ -1,0 +1,90 @@
+{% extends layout %}
+
+{% block content %}
+	<div class="content-wrapper">
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						Beranda
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="content">
+			<div class="container-fluid">
+				<!-- contoh menampilkan error message di flashdata 
+				tanpa menggunakan toast (simple) -->
+				{{ flashdata.message | raw }}
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body text-center">
+								<img alt="logo" src="{{ resource_url}}{{ app_logo }}"/><br/>
+								<h3 class="mt-3">Halo <label class="badge badge-warning text-uppercase">(username)</label></h3>
+								<h2 style="margin-top: -0.5em;">Selamat datang di aplikasi (nama_aplikasi) UNSRAT !~</h2>
+								<h5>Silahkan gunakan menu di bagian kanan untuk memulai operasi.</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row text-center">
+					<div class="col-12 mb-3 mt-4">
+						<h4><i class="icon fas fa-info-circle"></i> <strong>INFORMASI MENU</strong></h4>
+					</div>
+				</div>
+				<div class="row d-flex align-items-stretch">
+					{% if 'blank_fix' in modul_berhak %}
+						<div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<h2 class="lead"><b>Blank Fix</b></h2>
+										<p class="text-muted text-sm">
+											Halaman template untuk membuat halaman2 lainnya
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+					{% if 'manajemen_user' in modul_berhak %}
+						<div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<h2 class="lead"><b>Manajemen User</b></h2>
+										<p class="text-muted text-sm">
+											Menu untuk melakukan pengaturan user, grup dan modul
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+					{% if array_intersect(menu_tree.modul_1, modul_berhak) %}
+						<div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<h2 class="lead"><b>Modul 1</b></h2>
+										<p class="text-muted text-sm">
+											Hanya modul contoh untuk demo hide/show tree view menu
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+
+		</section>
+	</div>
+
+	<script>
+		navbar_dynamic('Beranda');
+	</script>
+{% endblock %}

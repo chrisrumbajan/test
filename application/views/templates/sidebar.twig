@@ -1,0 +1,107 @@
+<div class="sidebar">
+
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column text-sm" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+            {% if 'beranda' in modul_berhak %}
+                <li class="nav-item">
+                    <a href="{{ base_url() }}beranda" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>Beranda</p>
+                    </a>
+                </li>
+            {% endif %}
+            {% if 'blank_fix' in modul_berhak %}
+                <li class="nav-item">
+                    <a href="{{ base_url() }}beranda/blank_fix" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Blank Fix</p>
+                    </a>
+                </li>
+            {% endif %}
+            {% if 'manajemen_user' in modul_berhak %}
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                        <p>Manajemen User
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ base_url() }}manajemen_user/user" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ base_url() }}manajemen_user/grup" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Grup</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if menu_tree.modul_1 == true %}
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                        <p>Modul 1
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        {% if 'sub_modul_1a' in modul_berhak %}
+                            <li class="nav-item">
+                                <a href="" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Sub Modul 1A</p>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if 'sub_modul_1b' in modul_berhak %}
+                            <li class="nav-item">
+                                <a href="" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Sub Modul 1B</p>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </li>
+            {% endif %}
+            
+            <li class="nav-header">CONTOH</li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>Contoh Menu</p>
+                </a>
+            </li>
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                    <p>Contoh Multilevel Menu
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Sub Menu</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Sub Menu</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,41 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/*
+|--------------------------------------------------------------------------
+| Session Name
+|--------------------------------------------------------------------------
+|
+*/
+$config['session_name'] = 'usr_template_v3';
+
+
+/*
+|--------------------------------------------------------------------------
+| Session Name
+|--------------------------------------------------------------------------
+|
+*/
+$config['theme'] = [
+    // tampil di bagian atas sidebar
+    'app_name'  => 'TIKDev - Template v3',
+    // tampil di beranda dan lainnya
+    'app_logo'  => 'img/logo-unsrat.png',
+    // tampil di login
+    'login_app_name' => '<strong>TIKDEV</strong> Template v3',
+    // tampil di tab browser
+    'website_title' => 'TIKDev - Template v3',
+    // tampil di footer layout
+    'website_footer' => '<strong>Copyright &copy; ' . date('Y') . ' UPT-TIK UNSRAT</strong> * All rights reserved.',
+    // nomor versi aplikasi (tampil di kanan footer)
+    'version_number' => '1.0.0'
+];
+
+
+/*
+|--------------------------------------------------------------------------
+| Profiler 
+|--------------------------------------------------------------------------
+|
+*/
+$config['enable_profiler'] = TRUE;

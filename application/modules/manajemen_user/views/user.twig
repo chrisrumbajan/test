@@ -1,0 +1,191 @@
+{% extends layout %}
+
+{% block content %}
+	<div class="content-wrapper">
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1>Manajemen User - User</h1>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">Daftar User</h3>
+								<div class="card-tools">
+									<button class="btn btn-success btn-xs"
+										data-toggle="modal"
+										data-target="#modal-tambah">
+										<i class="fas fa-plus"></i> Tambah User
+									</button>
+								</div>
+							</div>
+							<div class="card-body">
+								<div style="overflow-x:scroll;">
+									<table class="table table-bordered">
+										<thead>
+											<tr style="text-align:center">
+												<th style="width: 5%">#</th>
+												<th>Username</th>
+												<th>Deskripsi</th>
+												<th>Grup</th>
+												<th style="width: 15%">Aksi</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for a in user %}
+												<tr>
+													<td align="center">{{ loop.index }}</td>
+													<td align="center">{{ a.user_username }}</td>
+													<td>{{ a.user_deskripsi }}</td>
+													<td align="center">{{ a.grup_nama }}</td>
+													<td align="center">
+														<button class="btn btn-edit btn-warning btn-xs"
+															data-id="{{ a.user_id }}"
+															data-username="{{ a.user_username }}"
+															data-deskripsi="{{ a.user_deskripsi }}"
+															data-grup="{{ a.grup_id }}"
+															data-toggle="modal"
+															data-target="#modal-edit">
+															<i class="fas fa-edit"></i>
+														</button>
+														<button class="btn btn-hapus btn-danger btn-xs"
+															data-id="{{ a.user_id }}"
+															data-username="{{ a.user_username }}"
+															data-toggle="modal"
+															data-target="#modal-hapus">
+															<i class="fas fa-trash"></i>
+														</button>
+													</td>
+												</tr>
+											{% else %}
+												Data user tidak ditemukan
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- MODAL TAMBAH USER -->
+	<div class="modal fade" id="modal-tambah">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				{{ form_open('manajemen_user/tambah_user', 'id="form-tambah-user"') }}
+					<div class="modal-header">
+						<h4 class="modal-title">Tambah User</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Username</label>
+							<input type="text" name="username" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Deskripsi</label>
+							<input type="text" name="deskripsi" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Password</label>
+							<input type="password" name="password" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Grup</label>
+							<select name="grup" class="form-control" required>
+								{% for a in ref_grup %}
+									<option value="{{ a.grup_id }}">{{ a.grup_nama }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+						<button type="submit" class="btn btn-success">Simpan</button>
+					</div>
+				{{ form_close() }}
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL EDIT USER -->
+	<div class="modal fade" id="modal-edit">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				{{ form_open('manajemen_user/edit_user', 'id="form-edit-user"') }}
+					<div class="modal-header">
+						<h4 class="modal-title">Edit Data User</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" name="id" id="edit-id" required readonly>
+						<div class="form-group">
+							<label>Username</label>
+							<input type="text" name="username" class="form-control" id="edit-username" required>
+						</div>
+						<div class="form-group">
+							<label>Deskripsi</label>
+							<input type="text" name="deskripsi" class="form-control" id="edit-deskripsi" required>
+						</div>
+						<div class="form-group">
+							<label>Password</label>
+							<input type="password" name="password" class="form-control" id="edit-password">
+						</div>
+						<div class="form-group">
+							<label>Grup</label>
+							<select class="form-control" name="grup" id="edit-grup" required>
+								{% for a in ref_grup %}
+									<option value="{{ a.grup_id }}">{{ a.grup_nama }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+						<button type="submit" class="btn btn-warning">Simpan</button>
+					</div>
+				{{ form_close() }}
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL HAPUS USER -->
+	<div class="modal fade" id="modal-hapus">
+		<div class="modal-dialog">
+			<div class="modal-content bg-danger">
+				{{ form_open('manajemen_user/hapus_user', 'id="form-hapus-user"') }}
+					<div class="modal-header">
+						<h4 class="modal-title">Hapus User</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" name="id" id="hapus-id" required>
+						<p>Apakah anda ingin menghapus user [<span id="hapus-username"></span>] ?</p>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button type="button" class="btn btn-outline-light" data-dismiss="modal">Batal</button>
+						<button type="submit" class="btn btn-outline-light">Simpan</button>
+					</div>
+				{{ form_close() }}
+			</div>
+		</div>
+	</div>
+	  
+{% endblock %}

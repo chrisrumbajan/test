@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ website_title }}</title>
+    <link rel="icon" href="{{ resource_url }}img/logo-unsrat.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ resource_url }}adminlte3/plugins/fontawesome-free/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <link rel="stylesheet" href="{{ resource_url }}adminlte3/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="{{ resource_url }}adminlte3/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{ resource_url }}css/tik_unsrat.css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+</head>
+<body class="hold-transition login-page">
+    <div style="
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.2);
+    "></div>
+    <div class="login-box">
+        <div class="card">
+            <div class="card-body login-card-body rounded">
+                <div class="login-logo pt-2" style="line-height: 0.8em;">
+                    <img class="mb-3" src="{{ resource_url }}img/logo-unsrat.png" alt="logo" width="100"/><br/>
+                    <a href="" style="font-size: 0.7em">{{ login_app_name|raw }}</a><br/>
+                    <small style="font-size: 0.6em;"><i>(backoffice)</i></small>
+                </div>
+                <p class="login-box-msg text-red">
+                    <label class="badge badge-danger">{{ flashdata.message | raw }}</label>
+                </p>
+                
+                {{ form_open('login/autentikasi') }}
+                    <div class="input-group mb-3">
+                        <input type="text" name="username" class="form-control" placeholder="Username">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn bg-black btn-block">MASUK</button>
+                        </div>
+                    </div>
+                {{ form_close() }}
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ resource_url }}adminlte3/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ resource_url }}adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ resource_url }}adminlte3/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>

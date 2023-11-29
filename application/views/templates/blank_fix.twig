@@ -1,0 +1,465 @@
+{% extends layout %}
+
+{% block content %}
+  <!-- datatable -->
+  <link rel="stylesheet" href="{{ resource_url }}adminlte3/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+
+  <!-- select 2 -->
+	<link rel="stylesheet" href="{{ resource_url }}adminlte3/plugins/select2/css/select2.min.css">
+	<link rel="stylesheet" href="{{ resource_url }}adminlte3/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{ resource_url }}adminlte3/plugins/summernote/summernote-bs4.css">
+
+	<div class="content-wrapper">
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						{# <h1>Blank fix</h1> #}
+					</div>
+				</div>
+			</div>
+		</section>
+
+    <!-- sticky button -->
+    <div id="sticky-btn-container">
+        <button class="btn bg-yellow btn-sm mr-1"
+          data-toggle="modal"
+          data-target="#mdl-validasi">Sticky</button>
+    </div>
+
+		<section class="content">
+			<div class="container-fluid">
+				<!-- contoh menampilkan error message di flashdata 
+				tanpa menggunakan toast (simple) -->
+				{{ flashdata.message | raw }}
+
+				{{ alert | raw }}
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">
+									{{ arrow_back('beranda') | raw }} Extra Title
+								</h3>
+								<div class="card-tools">
+									<button class="btn bg-gradient-primary btn-sm mr-1"
+										data-toggle="modal"
+										data-target="#mdl-validasi">
+										<i class="fas fa-check"></i> Validasi
+									</button>
+									<button class="btn btn-success btn-sm"
+										data-toggle="modal"
+										data-target="#mdl-tambah">
+										<i class="fas fa-plus"></i> Tambah
+									</button>
+								</div>
+							</div>
+							<div class="card-body">
+								<table class="table table-bordered table-hover tik_table_sm table-responsive">
+									<thead>
+										<tr>
+											<th class="text-uppercase text-center" width="5%">NO.</th>
+											<th class="text-uppercase text-center">HEAD 2</th>
+											<th class="text-uppercase text-center">HEAD 3</th>
+											<th class="text-uppercase text-center" width="10%">Aksi</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td align="center">1</td>
+											<td>Lorem ipsum sir dolor amet lorem ipsum sir dolor amet</td>
+											<td>
+												<label class="badge badge-info p-1 tik_label--lg">informasi</label>
+												<label class="badge badge-light p-1 tik_label--lg">belum ada progress</label>
+												<label class="badge badge-primary p-1 tik_label--lg">diterima</label>
+												<label class="badge badge-success p-1 tik_label--lg">selesai</label>
+												<label class="badge badge-warning p-1 tik_label--lg">menunggu</label>
+												<label class="badge badge-danger p-1 tik_label--lg">ditolak</label>
+											</td>
+											<td align="center">
+												<button class="btn btn-warning btn-xs mt-1"
+													title="edit"
+													rel="tooltip"
+													data-placement="bottom"
+													data-toggle="modal"
+													data-target="#mdl-edit"><i class="fas fa-edit"></i></button>
+												<button class="btn btn-danger btn-xs mt-1"
+													title="hapus"
+													rel="tooltip"
+													data-placement="bottom"
+													data-toggle="modal"
+													data-target="#mdl-hapus"><i class="fas fa-trash"></i></button><br/>
+												<button class="btn btn-info btn-flat btn-xs mt-1"
+													data-toggle="modal"
+													data-target="#mdl-lihat"><i class="fas fa-eye mr-1"></i>lihat</button>
+												<button class="btn bg-navy btn-flat btn-xs mt-1">navigasi<i class="fas fa-arrow-right ml-1"></i></button>
+												<button class="btn btn-secondary btn-flat btn-xs mt-1">extra button</button>
+											</td>
+										</tr>
+										<tr>
+											<td align="center">2</td>
+											<td>Lorem ipsum sir dolor amet lorem ipsum sir dolor amet</td>
+											<td align="center">
+												<object data="{{ resource_url }}img/logo-unsrat.png" type="image/png" width="80">
+													<img src="{{ default_img }}" width="200"/>
+												</object>
+											</td>
+											<td align="center">
+												<button class="btn btn-warning btn-xs mt-1"
+													title="edit"
+													rel="tooltip"
+													data-placement="bottom"
+													data-toggle="modal"
+													data-target="#mdl-edit"><i class="fas fa-edit"></i></button>
+												<button class="btn btn-danger btn-xs mt-1"
+													title="hapus"
+													rel="tooltip"
+													data-placement="bottom"
+													data-toggle="modal"
+													data-target="#mdl-hapus"><i class="fas fa-trash"></i></button><br/>
+												<button class="btn btn-info btn-flat btn-xs mt-1"
+													data-toggle="modal"
+													data-target="#mdl-lihat"><i class="fas fa-eye mr-1"></i>lihat</button>
+												<button class="btn bg-navy btn-flat btn-xs mt-1">navigasi<i class="fas fa-arrow-right ml-1"></i></button>
+												<button class="btn btn-secondary btn-flat btn-xs mt-1">extra button</button>
+											</td>
+										</tr>
+										<tr>
+											<td align="center">3</td>
+											<td>Lorem ipsum sir dolor amet lorem ipsum sir dolor amet</td>
+											<td>
+                        {{ indonesian_date('2020-03-03 12:12:00') }}<br/>
+                        {{ default_date('03 March 2020') }}<br/>
+                        {{ default_datetime('03 March 2020 12:12:12') }}<br/>
+                        {{ rupiah_to_number('Rp. 2,120,000') }}<br/>
+                        {{ number_to_rupiah('2120000') }}<br/>
+                      </td>
+											<td align="center">
+												<button class="btn btn-warning btn-xs mt-1"
+													title="edit"
+													rel="tooltip"
+													data-placement="bottom"
+													data-toggle="modal"
+													data-target="#mdl-edit"><i class="fas fa-edit"></i></button>
+												<button class="btn btn-danger btn-xs mt-1"
+													title="hapus"
+													rel="tooltip"
+													data-placement="bottom"
+													data-toggle="modal"
+													data-target="#mdl-hapus"><i class="fas fa-trash"></i></button><br/>
+												<button class="btn btn-info btn-flat btn-xs mt-1"
+													data-toggle="modal"
+													data-target="#mdl-lihat"><i class="fas fa-eye mr-1"></i>lihat</button>
+												<button class="btn bg-navy btn-flat btn-xs mt-1">navigasi<i class="fas fa-arrow-right ml-1"></i></button>
+												<button class="btn btn-secondary btn-flat btn-xs mt-1">extra button</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="card-footer clearfix">
+							  {{ pagination | raw}}
+							</div>
+						</div>
+
+            <div class="card">
+							<div class="card-header">
+								<h3 class="card-title">
+								  Datatable
+								</h3>
+							</div>
+							<div class="card-body">
+								<table id="datatable" class="table table-bordered table-striped table-responsive">
+                  <thead>
+                    <tr>
+                      <th>Rendering engine</th>
+                      <th>Browser</th>
+                      <th>Platform(s)</th>
+                      <th>Engine version</th>
+                      <th>CSS grade</th>
+                    </tr>
+                  </thead>
+                  <tbody>                         
+                    <tr>
+                      <td>Misc</td>
+                      <td>Lynx</td>
+                      <td>Text only</td>
+                      <td>-</td>
+                      <td>X</td>
+                    </tr>
+                    <tr>
+                      <td>Misc</td>
+                      <td>IE Mobile</td>
+                      <td>Windows Mobile 6</td>
+                      <td>-</td>
+                      <td>C</td>
+                    </tr>
+                    <tr>
+                      <td>Misc</td>
+                      <td>PSP browser</td>
+                      <td>PSP</td>
+                      <td>-</td>
+                      <td>C</td>
+                    </tr>
+                    <tr>
+                      <td>Other browsers</td>
+                      <td>All others</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>U</td>
+                    </tr>
+                  </tbody>
+                    <tfoot>
+                    <tr>
+                      <th>Rendering engine</th>
+                      <th>Browser</th>
+                      <th>Platform(s)</th>
+                      <th>Engine version</th>
+                      <th>CSS grade</th>
+                    </tr>
+                  </tfoot>
+                </table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+  <!-- modal tambah -->
+  <div class="modal fade" id="mdl-tambah">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Tambah</h4>
+        </div>
+        {{ form_open('') }}
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Select2</label>
+            <select name="" class="sel_kategori form-control" id="select2-contoh"
+              data-placeholder="ketik kata kunci ..">
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Input</label>
+            <input name="" type="text" class="form-control tik_num">
+          </div>
+          <div class="form-group">
+            <label>Textarea</label>
+            <textarea name="" type="text" class="form-control"></textarea>
+          </div>
+          <label>Checkboxes:</label>
+          <div class="form-group row">
+            <div class="col-4">
+              <div class="custom-control custom-checkbox">
+                <input name="" class="custom-control-input" type="checkbox" id="customCheckbox1" value="1">
+                <label for="customCheckbox1" class="custom-control-label" style="font-weight: normal;">A</label>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="custom-control custom-checkbox">
+                <input name="" class="custom-control-input" type="checkbox" id="customCheckbox2" value="1">
+                <label for="customCheckbox2" class="custom-control-label" style="font-weight: normal;">B</label>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="custom-control custom-checkbox">
+                <input name="" class="custom-control-input" type="checkbox" id="customCheckbox3" value="1">
+                <label for="customCheckbox3" class="custom-control-label" style="font-weight: normal;">C</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Text editor</label>
+            <textarea id="text_editor_summernote" placeholder="Place some text here"
+              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-success">Simpan</button>
+        </div>
+        {{ form_close() }}
+      </div>
+    </div>
+  </div>
+
+  <!-- modal edit -->
+  <div class="modal fade" id="mdl-edit">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit</h4>
+        </div>
+        {{ form_open('') }}
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Select2</label>
+            <select name="" class="sel_kategori form-control"
+              data-placeholder="ketik kata kunci ..">
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Input</label>
+            <input name="" type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Textarea</label>
+            <textarea name="" type="text" class="form-control"></textarea>
+          </div>
+          <label>Radio button:</label>
+          <div class="form-group row">
+            <div class="col-4">
+              <div class="custom-control custom-checkbox">
+                <input name="" class="custom-control-input" type="checkbox" id="customRadioButton1" value="1">
+                <label for="customRadioButton1" class="custom-control-label" style="font-weight: normal;">A</label>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="custom-control custom-checkbox">
+                <input name="" class="custom-control-input" type="checkbox" id="customRadioButton2" value="1">
+                <label for="customRadioButton2" class="custom-control-label" style="font-weight: normal;">B</label>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="custom-control custom-checkbox">
+                <input name="" class="custom-control-input" type="checkbox" id="customRadioButton3" value="1">
+                <label for="customRadioButton3" class="custom-control-label" style="font-weight: normal;">C</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-success">Simpan</button>
+        </div>
+        {{ form_close() }}
+      </div>
+    </div>
+  </div>
+
+  <!-- modal lihat -->
+  <div class="modal fade" id="mdl-lihat">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Lihat/detail</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {{ form_open('') }}
+        <div class="modal-body">
+          Bisa berisi tabel, input readonly, heading, dll.
+        </div>
+        {{ form_close() }}
+      </div>
+    </div>
+  </div>
+
+  <!-- modal hapus -->
+  <div class="modal fade" id="mdl-hapus">
+    <div class="modal-dialog modal-sm">
+      {{ form_open('') }}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Hapus</h4>
+        </div>
+        <div class="modal-body">
+          Yakin menghapus <b>(nama_objek)</b>?
+          <input type="hidden" name="del_hps_id" id="hps_id"/>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-danger">Hapus</button>
+        </div>
+      </div>
+      {{ form_close() }}
+    </div>
+  </div>
+
+  <!-- modal validasi -->
+  <div class="modal fade" id="mdl-validasi">
+    <div class="modal-dialog modal-sm">
+      {{ form_open('') }}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Validasi</h4>
+        </div>
+        <div class="modal-body">
+          Validasi <b>(nama_objek)</b>?
+          <input type="hidden" name="del_validasi_id" id="validasi_id"/>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Ya</button>
+        </div>
+      </div>
+      {{ form_close() }}
+    </div>
+  </div>
+
+  <!-- select 2 -->
+  <script src="{{ resource_url }}adminlte3/plugins/select2/js/select2.min.js"></script>
+
+  <!-- DataTables -->
+  <script src="{{ resource_url }}adminlte3/plugins/datatables/jquery.dataTables.js"></script>
+  <script src="{{ resource_url }}adminlte3/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+  <!-- Summernote -->
+  <script src="{{ resource_url }}adminlte3/plugins/summernote/summernote-bs4.min.js"></script>
+  <script>
+    // datatable
+    $('#datatable').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+	
+    // initialize select2
+    $(".select2").select2({
+      theme: 'bootstrap4'
+	  });
+
+    // summernote
+    $('#text_editor_summernote').summernote();
+
+    $(document).ready(function() {
+			// contoh select2 data ajax
+			$("#select2-contoh").select2({
+				placeholder: "Ketik kata kunci...",
+				minimumInputLength: 1,
+				theme: "bootstrap4",
+				allowClear: true,
+				ajax: {
+					url: "{{ base_url('beranda/blank_fix/get_data_select2_ajax') }}",
+					dataType: 'json',
+					delay: 250,
+					data: function(params) {
+						return {
+							search: params.term
+						}
+					},
+					processResults: function (data) {
+						return {
+							results: $.map(data, function (item) {
+								return {
+									id: item.id,
+									text: item.nama
+								}
+							})
+						};
+					}
+				}
+			});
+		});
+
+  </script>
+{% endblock %}
